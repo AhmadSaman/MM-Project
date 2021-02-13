@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useFetch from "../useFetcch";
+import useFetch from "../useFetch";
 import DisplayFilms from "./../components/DisplayFilms";
 const Home = () => {
 	//The Url
@@ -21,8 +21,9 @@ const Home = () => {
 			}
 		}
 	};
+
 	return (
-		<div className="home font-mono text-fourth">
+		<div className="home font-mono text-fourth mt-5">
 			<div className="flex flex-wrap lg:w-3/4 mx-auto justify-center">
 				{pending && <p>Loading...</p>}
 				{data && <DisplayFilms data={data} />}
