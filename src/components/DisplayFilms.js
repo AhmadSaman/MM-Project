@@ -1,5 +1,26 @@
 import { Link } from "react-router-dom";
-const DisplayFilms = ({ data }) => {
+
+const DisplayFilms = ({ data, url }) => {
+	const convertImg = (path) => {
+		if (path) {
+			return `https://image.tmdb.org/t/p/original${path}`;
+		}
+	};
+	// const [myurl, setmyurl] = useState(url);
+	// 	const [newdata, pending] = useFetch(myurl);
+	// 	const memeurl = (url, status) => {
+	// 		let newUrl = url.split("page=");
+	// 		let newpageNo;
+
+	// 		if (status === "next") {
+	// 			newpageNo = parseInt(newUrl[1]) + 1;
+	// 		} else {
+	// 			newpageNo = parseInt(newUrl[1]) - 1;
+	// 		}
+	// 		newUrl.splice(1, 1, `page=${newpageNo}`);
+	// 		const urlnew = newUrl.join("");
+	// 		return urlnew;
+	// 	};
 	return data.results.map((element) => {
 		return (
 			<div
@@ -9,17 +30,10 @@ const DisplayFilms = ({ data }) => {
 				<Link to={`/Detail/${element.id}`} key={element.id} className="">
 					<img
 						className=""
-						src={`https://image.tmdb.org/t/p/original${element.poster_path}`}
+						src={convertImg(element.poster_path)}
 						alt={element.title}
 					/>
-					<h1
-						className="text-center p-3"
-						style={{
-							boxShadow: "0px -3px 2px 0px rgba(0,0,0,0.5)",
-						}}
-					>
-						{element.title}
-					</h1>
+					<h1 className="text-center p-3">{element.title}</h1>
 				</Link>
 			</div>
 		);
