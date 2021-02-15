@@ -1,13 +1,24 @@
 import useFetch from "../useFetch";
 import DisplayFilms from "./../components/DisplayFilms";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const Search = () => {
 	const [value, setvalue] = useState("a");
 	const [theUrl, settheUrl] = useState(
 		`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${value}&page=1`
 	);
-	const [url, seturl] = useState(theUrl);
-	const [data, pending] = useFetch(url);
+	useEffect(() => {
+		if (value) {
+			settheUrl(
+				`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${value}`
+			);
+		}
+
+		return () => {
+			console.log("cleanup");
+		};
+	}, [value]);
+
+	const [data, pending] = useFetch(theUrl);
 
 	return (
 		<div className="Search lg:w-3/4 mx-auto font-mono text-fourth">
@@ -17,11 +28,12 @@ const Search = () => {
 					type="text"
 					placeholder="Write Film Name..."
 					onChange={(event) => {
-						if (event.target.value)
-							seturl(
-								`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${event.target.value}`
-							);
-						console.log(value);
+						setvalue(event.target.value);
+						// if (value) {
+						// 	settheUrl(
+						// 		`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${value}`
+						// 	);
+						// }
 					}}
 				/>
 				{/* <input
@@ -37,11 +49,11 @@ const Search = () => {
 						{data.page > 1 && (
 							<button
 								className="border bg-first p-1 rounded-lg hover:bg-third hover:border-fourth focus:outline-none transform transition duration-200 hover:scale-90"
-								onClick={(event) =>
+								onClick={() =>
 									settheUrl(
-										`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${
-											event.target.value
-										}&page=${data.page - 1}`
+										`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${value}&page=${
+											data.page - 1
+										}`
 									)
 								}
 							>
@@ -50,19 +62,23 @@ const Search = () => {
 						)}
 						<button
 							className="border bg-third hover:border-fourth p-1 rounded-lg focus:outline-none transform transition duration-200 hover:scale-110"
-							onClick={(event) => {
-								return settheUrl(
-									`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=
-										
-									&page=${data.page + 1}`
-								);
-							}}
+							onClick={() =>
+								settheUrl(
+									`https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${value}&page=${
+										data.page + 1
+									}`
+								)
+							}
 						>
 							Next
 						</button>
 					</div>
 				)}
+				{console.log(theUrl, value)}
 			</div>
+			<h1 className="text-fourth text-xl text-center">
+				Page {data && data.page}
+			</h1>
 		</div>
 	);
 };
