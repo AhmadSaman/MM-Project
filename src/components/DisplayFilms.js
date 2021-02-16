@@ -7,24 +7,7 @@ const DisplayFilms = ({data, url}) => {
     }
   };
 
-  console.log('data', data);
-  // const [myurl, setmyurl] = useState(url);
-  // 	const [newdata, pending] = useFetch(myurl);
-  // 	const memeurl = (url, status) => {
-  // 		let newUrl = url.split("page=");
-  // 		let newpageNo;
-
-  // 		if (status === "next") {
-  // 			newpageNo = parseInt(newUrl[1]) + 1;
-  // 		} else {
-  // 			newpageNo = parseInt(newUrl[1]) - 1;
-  // 		}
-  // 		newUrl.splice(1, 1, `page=${newpageNo}`);
-  // 		const urlnew = newUrl.join("");
-  // 		return urlnew;
-  // 	};
-  return (
-    data.results?.length &&
+  return data.results?.length ? (
     data.results.map(element => {
       return (
         <div
@@ -42,6 +25,8 @@ const DisplayFilms = ({data, url}) => {
         </div>
       );
     })
+  ) : (
+    <h1 className='text-center'>Sorry No Result found</h1>
   );
 };
 export default DisplayFilms;

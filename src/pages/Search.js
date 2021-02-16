@@ -1,43 +1,33 @@
 import useFetch from '../useFetch';
 import DisplayFilms from './../components/DisplayFilms';
 import {useState, useEffect} from 'react';
+import {sendRequest} from '../util';
+
 const Search = () => {
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
   const [data, setdata] = useState(null);
-  const [pending, setpending] = useState(true);
-  const [value, setvalue] = useState('a');
-  const [theUrl, settheUrl] = useState();
-  const [url, seturl] = useState(theUrl);
+
   const [pageNo, setPageNo] = useState(1);
 
+  console.log(data);
+
   useEffect(() => {
-    input &&
-      fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${input}&page=${pageNo}`
-      )
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          setpending(false);
-          setdata(data);
-        });
+    input && sendRequest(input).then(data => setdata(data));
   }, [pageNo]);
 
   function handleSeacrh(e) {
-    e.target.value &&
-      fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&query=${e.target.value}`
-      )
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          setpending(false);
-          setdata(data);
-        });
-
     setInput(e.target.value);
+    setLoading(true);
+    if (e.target.value === '') {
+      setdata(null);
+      setLoading(false);
+    }
+    e.target.value &&
+      sendRequest(e.target.value).then(data => {
+        setLoading(false);
+        setdata(data);
+      });
   }
 
   return (
@@ -51,9 +41,9 @@ const Search = () => {
         />
       </form>
       <div className='flex flex-wrap lg:w-3/4 mx-auto justify-center'>
-        {pending && <p>Loading...</p>}
+        {loading && <p>Loading...</p>}
         {data && <DisplayFilms data={data} />}
-        {data && (
+        {data?.results.length && (
           <div className='flex justify-center lg:w-3/4 mx-auto space-x-3 m-3'>
             {data.page > 1 && (
               <button
