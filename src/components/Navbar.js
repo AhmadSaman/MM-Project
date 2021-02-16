@@ -10,10 +10,10 @@ function Navbar() {
 					<Link to="/Search">Search</Link>
 				</li>
 				<li className="hover:text-third transform transition duration-200 hover:scale-110 ">
-					<Link to="/Error">Genre</Link>
+					<Link to="/Genre">Genre</Link>
 				</li>
 				<li className="hover:text-third transform transition duration-200 hover:scale-110 ">
-					<Link to="/Error"></Link>
+					<Link to="/"></Link>
 				</li>
 			</ul>
 		</div>

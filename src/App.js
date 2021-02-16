@@ -5,6 +5,7 @@ import Page404 from "./pages/Page404";
 import Detail from "./pages/Detail";
 import Search from "./pages/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Genre from "./pages/Genre";
 
 function App() {
 	return (
@@ -15,14 +16,15 @@ function App() {
 					<Route exact path="/">
 						<Home />
 					</Route>
-					<Route path="/error">
-						<Page404 />
-					</Route>
+
 					<Route path="/Detail/:id">
 						<Detail />
 					</Route>
 					<Route path="/Search">
 						<Search />
+					</Route>
+					<Route path="/Genre">
+						<Genre />
 					</Route>
 				</Switch>
 			</div>
