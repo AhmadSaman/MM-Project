@@ -1,11 +1,30 @@
 const DisplayProfile = ({ data }) => {
+	console.log(data);
 	return (
-		<div className="DsplayProfile lg:w-3/4 mx-auto mt-5 font-mono text-center">
+		<div className="DsplayProfile flex flex-col lg:w-3/5 mx-auto mt-5 font-mono text-center text-fourth">
 			<img
 				src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
-				className="lg:w-1/4 mx-auto rounded-lg border border-fourth"
+				className="w-2/6 mx-auto m-3 rounded-lg border border-fourth"
 			/>
-			<h1 className="text-3xl text-fourth my-5">{data.title}</h1>
+			<div className="w-4/6 mx-auto">
+				<h1 className="text-3xl  my-3">{data.title}</h1>
+				<div className="my-5">
+					<h3 className="text-xl ">Overview</h3>
+					<p className="ml-3 text-left">{data.overview}</p>
+				</div>
+				<div className="my-3">
+					<h1 className="text-xl ">Release Data</h1>
+					<p>{data.release_date}</p>
+				</div>
+				<div className="my-3">
+					<h1 className="text-xl">Genres</h1>
+					<ul>
+						{data.genres.map((element) => (
+							<li key={element.id}>{element.name}</li>
+						))}
+					</ul>
+				</div>
+			</div>
 		</div>
 	);
 };
