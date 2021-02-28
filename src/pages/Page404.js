@@ -1,6 +1,6 @@
 const Page404 = () => {
 	return (
-		<div className="Page404 m-5 font-mono h-screen">
+		<div className="Page404 m-5 h-screen">
 			<h1 className="text-5xl text-fourth text-center">404</h1>
 			<div>
 				<iframe

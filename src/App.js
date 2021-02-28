@@ -26,6 +26,9 @@ function App() {
 					<Route path="/Genre">
 						<Genre />
 					</Route>
+					<Route path="*">
+						<Page404 />
+					</Route>
 				</Switch>
 			</div>
 		</Router>

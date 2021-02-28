@@ -11,7 +11,7 @@ const Detail = () => {
 		`https://api.themoviedb.org/3/movie/${id}/similar?api_key=c8b25cf3edbf1c810fc3746d2e6f7d62&page=1`
 	);
 	return (
-		<div className="Detail text-center font-mono mt-5">
+		<div className="Detail text-center mt-5">
 			{pending && similarPending && <p>Loading...</p>}
 			{data && <DisplayProfile data={data} />}
 			<div className="flex flex-wrap lg:w-3/4 mx-auto justify-center">

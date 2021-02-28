@@ -1,7 +1,6 @@
 const DisplayProfile = ({ data }) => {
-	console.log(data);
 	return (
-		<div className="DsplayProfile flex flex-col lg:w-3/5 mx-auto mt-5 font-mono text-center text-fourth">
+		<div className="DsplayProfile flex flex-col lg:w-3/5 mx-auto mt-5 text-center text-fourth">
 			<img
 				src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
 				className="w-2/6 mx-auto m-3 rounded-lg border border-fourth"

@@ -4,18 +4,21 @@ const useFetch = (url) => {
 	const [pending, setpending] = useState(true);
 
 	useEffect(() => {
-		fetch(url)
-			.then((res) => {
-				return res.json();
-			})
-			.then((data) => {
-				setpending(false);
-				setdata(data);
-			})
-			.catch((err) => console.log(err));
-		return () => {
-			console.log("cleanup");
-		};
+		setpending(true);
+		setTimeout(() => {
+			fetch(url)
+				.then((res) => {
+					return res.json();
+				})
+				.then((data) => {
+					setpending(false);
+					setdata(data);
+				})
+				.catch((err) => console.log(err));
+			return () => {
+				console.log("cleanup");
+			};
+		}, 500);
 	}, [url]);
 	return [data, pending];
 };
