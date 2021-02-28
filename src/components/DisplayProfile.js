@@ -4,7 +4,12 @@ const DisplayProfile = ({ data, credits, video }) => {
 			return `https://image.tmdb.org/t/p/original${path}`;
 		}
 	};
-	console.log(data);
+	const convertVideo = (path) => {
+		if (path) {
+			return `https://www.youtube.com/embed/${path}`;
+		}
+	};
+
 	return (
 		<div className="DsplayProfile">
 			<div className=" flex flex-col lg:flex-row lg:w-4/6 mx-auto mt-5   text-fourth">
@@ -57,17 +62,20 @@ const DisplayProfile = ({ data, credits, video }) => {
 					))}
 				</div>
 			</div>
-			<div className="text-center my-3 mx-auto lg:w-4/6">
-				<h1 className="text-3xl font-bold my-4 ">Trailer</h1>
-				<iframe
-					className=" w-full"
-					height="600px"
-					src={`https://www.youtube.com/embed/${video.results[0].key}`}
-					frameBorder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowFullScreen
-				></iframe>
-			</div>
+			{video.results.length !== 0 && (
+				<div className="text-center my-3 mx-auto lg:w-4/6">
+					<h1 className="text-3xl font-bold my-4 ">Trailer</h1>
+
+					<iframe
+						className=" w-full"
+						height="600px"
+						src={convertVideo(video.results[0].key)}
+						frameBorder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowFullScreen
+					></iframe>
+				</div>
+			)}
 		</div>
 	);
 };
