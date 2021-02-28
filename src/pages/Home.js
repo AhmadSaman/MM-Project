@@ -17,7 +17,7 @@ const Home = () => {
 				data.page + 1
 			}`
 		);
-	//Calling Data
+
 	const [data, pending] = useFetch(theUrl);
 	return (
 		<div className="home text-fourth mt-5">
@@ -43,10 +43,8 @@ const Home = () => {
 				)}
 			</div>
 			{pending && <p className="text-fourth  text-center">Loading...</p>}
-			{data && (
-				<h1 className="text-fourth text-xl text-center mb-10">
-					Page {data && data.page}
-				</h1>
+			{data && !pending && (
+				<p className="text-fourth text-center">Page {data && data.page}</p>
 			)}
 		</div>
 	);

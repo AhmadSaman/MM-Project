@@ -2,3 +2,6 @@
 * {
 	font-family: "RocknRoll One", sans-serif;
 }
+#scroll::-webkit-scrollbar {
+	display: none;
+}

@@ -79,12 +79,15 @@ const Search = () => {
 					</div>
 				)}
 			</div>
-
-			{pending && data && <p className="text-fourth text-center">Loading</p>}
-			{data && !pending && (
-				<h1 className="text-fourth text-xl text-center">Page {data.page}</h1>
+			{data && data.total_pages === 0 && (
+				<p className="text-fourth text-center">There is no result</p>
 			)}
-			{console.log(data)}
+			{pending && data && data.total_pages !== 0 && (
+				<p className="text-fourth text-center">Loading</p>
+			)}
+			{data && data.total_pages !== 0 && !pending && (
+				<p className="text-fourth text-center">Page {data.page}</p>
+			)}
 		</div>
 	);
 };
