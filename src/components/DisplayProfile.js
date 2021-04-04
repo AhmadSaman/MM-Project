@@ -9,15 +9,28 @@ const DisplayProfile = ({ data, credits, video }) => {
 			return `https://www.youtube.com/embed/${path}`;
 		}
 	};
+	const handleList = () => {
+		localStorage.setItem(data.id, data.title);
+	};
 
 	return (
 		<div className="DsplayProfile">
 			<div className=" flex flex-col lg:flex-row lg:w-4/6 mx-auto mt-5   text-fourth">
-				<img
-					src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
-					className="w-2/6 mx-auto m-3 rounded-lg border border-fourth"
-				/>
-				<div className="w-4/6 mx-auto">
+				<div className="lg:w-1/4 w-2/4 mx-auto m-3">
+					<img
+						src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
+						className=" rounded-lg border border-fourth"
+					/>
+
+					<button
+						className="focus:outline-none bg-red-500 text-white p-1 rounded-md transform transition duration-200 hover:scale-90 my-2 w-full"
+						onClick={handleList}
+					>
+						Add To List
+					</button>
+				</div>
+
+				<div className="lg:w-3/4 mx-auto">
 					<h1 className="text-3xl ">{data.title}</h1>
 					<div className="my-5">
 						<h3 className="text-xl font-bold">Overview</h3>

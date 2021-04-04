@@ -47,7 +47,7 @@ const Search = () => {
 			<div className="flex flex-wrap lg:w-3/4 mx-auto justify-center">
 				{data && <DisplayFilms data={data} />}
 				{data && (
-					<div className="flex justify-center lg:w-3/4 mx-auto space-x-3 m-3">
+					<div className="flex justify-center w-3/4 mx-auto space-x-3 m-3">
 						{data.page > 1 && (
 							<button
 								className="border bg-first p-1 rounded-lg hover:bg-third hover:border-fourth focus:outline-none transform transition duration-200 hover:scale-90"

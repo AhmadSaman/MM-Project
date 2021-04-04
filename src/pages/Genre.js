@@ -64,7 +64,7 @@ const Genre = () => {
 			<div className="flex flex-wrap lg:w-5/6   mx-auto justify-center">
 				{dataFilms && <DisplayFilms data={dataFilms} />}
 				{dataFilms && (
-					<div className="flex justify-center lg:w-3/4 mx-auto space-x-3 m-3">
+					<div className="flex justify-center w-3/4 mx-auto space-x-3 m-3">
 						{dataFilms.page > 1 && (
 							<button
 								className="border bg-first p-1 rounded-lg hover:bg-third hover:border-fourth focus:outline-none transform transition duration-200 hover:scale-90"

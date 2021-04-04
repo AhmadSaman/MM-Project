@@ -5,3 +5,6 @@
 #scroll::-webkit-scrollbar {
 	display: none;
 }
+#favorite-scroll::-webkit-scrollbar {
+	display: none;
+}
