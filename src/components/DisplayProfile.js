@@ -9,9 +9,6 @@ const DisplayProfile = ({ data, credits, video }) => {
 			return `https://www.youtube.com/embed/${path}`;
 		}
 	};
-	const handleList = () => {
-		localStorage.setItem(data.id, data.title);
-	};
 
 	return (
 		<div className="DsplayProfile">
@@ -21,13 +18,6 @@ const DisplayProfile = ({ data, credits, video }) => {
 						src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
 						className=" rounded-lg border border-fourth"
 					/>
-
-					<button
-						className="focus:outline-none bg-red-500 text-white p-1 rounded-md transform transition duration-200 hover:scale-90 my-2 w-full"
-						onClick={handleList}
-					>
-						Add To List
-					</button>
 				</div>
 
 				<div className="lg:w-3/4 mx-auto">

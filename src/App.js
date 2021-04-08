@@ -6,7 +6,6 @@ import Detail from "./pages/Detail";
 import Search from "./pages/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Genre from "./pages/Genre";
-import Favorite from "./components/Favorite";
 
 function App() {
 	return (
@@ -31,7 +30,6 @@ function App() {
 						<Page404 />
 					</Route>
 				</Switch>
-				<Favorite />
 			</div>
 		</Router>
 	);
